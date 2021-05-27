@@ -1,34 +1,15 @@
 from flask import Flask
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
+from base.views import base_app
+from users.create.views import users_create_app
+def create_app(config_filename):
+    app = Flask(__name__)
+    app.config.from_pyfile(config_filename)
 
-from config import Config
-from config import version
-from routes.users import users
-from models.db import db
-
-app = Flask(__name__)
-
-
-app.config.from_object(Config)
-
-
-migrate = Migrate(app, db)
-
-db.app = app
-db.init_app(app)
-db.create_all()
-
-app.register_blueprint(users)
-
-@app.route("/")
-def welcome():
-    return "Welcome to the Dungeons And Dungeons Level Server API v"+version
-
-
-if __name__ == '__main__':
-    app.run()
+    from users.models import db
+    db.app = app
+    db.init_app(app)
     db.create_all()
 
-
-
+    app.register_blueprint(base_app)
+    app.register_blueprint(users_create_app)
+    return app
