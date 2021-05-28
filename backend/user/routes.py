@@ -15,7 +15,7 @@ router = APIRouter()
 
 
 
-@router.get("/", tags=["users"])
+@router.get("/", tags=["user"])
 async def read_users():
     users = user_controller.get_users()
     usersOut = []
@@ -24,7 +24,7 @@ async def read_users():
     return usersOut
 
 
-@router.post("/", tags=["users"])
+@router.post("/", tags=["user"])
 async def add_users(userCreate: UserCreate):
     return UserOut.from_orm(user_controller.create_user(userCreate))
 
@@ -34,7 +34,7 @@ async def read_users_me(current_user: UserOut = Depends(get_current_active_user)
     return current_user
 
 
-@router.get("/{username}", tags=["users"])
+@router.get("/{username}", tags=["user"])
 async def read_user(username: str):
     user_controller.get_user(username)
 

@@ -21,19 +21,19 @@ Base.metadata.create_all(engine)
 
 app.include_router(
     baseRouter,
-    prefix='/base',
+    prefix='',
     tags=['base']
 )
 
 app.include_router(
     userRouter,
     prefix='/user',
-    tags=['base']
+    tags=['user']
 )
 
 
 app.include_router(
     authRouter,
     prefix='/auth',
-    tags=['base']
+    tags=['auth']
 )

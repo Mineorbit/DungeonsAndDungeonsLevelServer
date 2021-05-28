@@ -12,7 +12,7 @@ from config import ACCESS_TOKEN_EXPIRE_MINUTES
 router = APIRouter()
 
 
-@router.post("/token", response_model=Token)
+@router.post("/token", tags=["auth"], response_model=Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
     user = authenticate_user(form_data.username, form_data.password)
     if not user:
@@ -26,3 +26,8 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
         data={"sub": user.name}, expires_delta=access_token_expires
     )
     return {"access_token": access_token, "token_type": "bearer"}
+
+
+@router.delete("/token", tags=["auth"])
+async def revoke_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
+    pass
