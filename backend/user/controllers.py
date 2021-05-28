@@ -27,8 +27,6 @@ def create_user(userCreate: UserCreate):
     return user
 
 
-
-
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
         payload = jwt.decode(token, SECRET, algorithms=[ALGO])
@@ -47,10 +45,17 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
 async def get_current_active_user(current_user: User = Depends(get_current_user)):
     return current_user
 
+
 def get_user(username: str):
     session = SessionMaker()
     user = session.query(User).filter(User.name == username).first()
     return user
+
+
+def get_users():
+    session = SessionMaker()
+    users = session.query(User).all()
+    return users
 
 
 def create_access_token(data, expires_delta):

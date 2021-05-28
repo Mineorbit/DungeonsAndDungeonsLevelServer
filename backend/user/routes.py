@@ -1,5 +1,6 @@
 from datetime import timedelta
 from http.client import HTTPException
+from typing import List
 
 from fastapi import APIRouter, Depends
 from fastapi.security import OAuth2PasswordRequestForm
@@ -16,7 +17,11 @@ router = APIRouter()
 
 @router.get("/", tags=["users"])
 async def read_users():
-    pass
+    users = user_controller.get_users()
+    usersOut = []
+    for user in users:
+        usersOut.append(UserOut.from_orm(user))
+    return usersOut
 
 
 @router.post("/", tags=["users"])
@@ -31,6 +36,6 @@ async def read_users_me(current_user: UserOut = Depends(get_current_active_user)
 
 @router.get("/{username}", tags=["users"])
 async def read_user(username: str):
-    pass
+    user_controller.get_user(username)
 
 
