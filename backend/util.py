@@ -1,5 +1,12 @@
+from fastapi.security import OAuth2PasswordBearer
+from passlib.context import CryptContext
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
+
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///database.db"
 # SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"

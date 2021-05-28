@@ -1,10 +1,12 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
 class UserOut(BaseModel):
     id: int
     name: str
-    email: str
+    email: Optional[str]
 
     class Config:
         orm_mode = True
@@ -12,7 +14,7 @@ class UserOut(BaseModel):
 
 class UserCreate(BaseModel):
     name: str
-    email: str
+    email: Optional[str]
     password: str
 
     class Config:
