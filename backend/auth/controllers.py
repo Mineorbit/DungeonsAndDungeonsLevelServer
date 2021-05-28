@@ -31,5 +31,5 @@ def authenticate_user(name: str, password: str):
         if pwd_context.verify(password, user.hashed_password):
             return user
         else:
-            print("Passwort falsch")
+            print("Password wrong")
             return None
