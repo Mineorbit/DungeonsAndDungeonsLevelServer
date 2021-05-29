@@ -9,7 +9,7 @@ from util import Base
 
 class Level(Base):
     __tablename__ = "level"
-    id = Column(Integer, primary_key=True)
+    ulid = Column(Integer, primary_key=True)
     name = Column(String)
     upload_date = Column(DateTime)
 
@@ -18,7 +18,7 @@ class Level(Base):
 
 class UserLevel(Base):
     __tablename__ = "user_level"
-    level_id = Column(Integer, ForeignKey(Level.id), primary_key=True, index=True)
+    level_id = Column(Integer, ForeignKey(Level.ulid), primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey(User.id), primary_key=True, index=True)
 
 
@@ -26,7 +26,7 @@ class UserLevel(Base):
 
 class LevelFile(Base):
     __tablename__ = "level_file"
-    level_id = Column(Integer, ForeignKey(Level.id), primary_key=True, index=True)
+    level_id = Column(Integer, ForeignKey(Level.ulid), primary_key=True, index=True)
     file_id = Column(Integer, ForeignKey(File.id), primary_key=True, index=True)
 
 

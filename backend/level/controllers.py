@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from file.models import File
 from level.models import Level, LevelFile, UserLevel
 from level.views import LevelCreate
 from util import SessionMaker
@@ -12,9 +13,8 @@ def add_level(create: LevelCreate):
         upload_date=datetime.today()
     )
     session.add(level)
-    print(str(level.id))
     session.commit()
-    _lid = level.id
+    _lid = level.ulid
     return level
 
 def add_file_to_level(f_id: int, l_id: int):
@@ -37,6 +37,13 @@ def add_user_to_level(u_id: int, l_id: int):
     session.add(userLevel)
     session.commit()
     _lu = userLevel.user_id
+
+
+def get_file_of_level(ulid: int):
+    session = SessionMaker()
+    file_id = session.query(LevelFile, File).filter(LevelFile.file_id == File.id).filter(LevelFile.level_id == ulid).\
+        with_entities(File).first()
+    return file_id
 
 
 

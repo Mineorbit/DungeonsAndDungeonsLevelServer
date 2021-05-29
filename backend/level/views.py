@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class LevelOut(BaseModel):
-    id: int
+    ulid: int
     name: str
     upload_date: datetime
 
