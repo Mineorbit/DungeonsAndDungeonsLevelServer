@@ -25,7 +25,7 @@ async def upload_file(in_file: fastapi.UploadFile):
     session.add(file)
     session.commit()
     if(not path.exists(file_path)):
-        await os.mkdir(file_path)
+        os.mkdir(file_path)
     file_location = file_path+"/"+str(file.id)
     async with aiofiles.open(file_location, 'wb') as out_file:
         content = await in_file.read()  # async read
