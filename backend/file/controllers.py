@@ -14,8 +14,9 @@ from util import SessionMaker
 
 file_path = "uploaded_files"
 
-async def handle_upload_file(in_file: fastapi.UploadFile):
-    session =  SessionMaker()
+
+async def upload_file(in_file: fastapi.UploadFile):
+    session = SessionMaker()
     file = File(
         name = in_file.filename,
         type = in_file.content_type,
@@ -29,6 +30,7 @@ async def handle_upload_file(in_file: fastapi.UploadFile):
     async with aiofiles.open(file_location, 'wb') as out_file:
         content = await in_file.read()  # async read
         await out_file.write(content)
+    return file
 
 
 async def download_file(file_id: int):

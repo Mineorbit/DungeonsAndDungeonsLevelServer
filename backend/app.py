@@ -5,6 +5,7 @@ from base.routes import router as baseRouter
 from user.routes import router as userRouter
 from auth.routes import router as authRouter
 from file.routes import router as fileRouter
+from level.routes import router as levelRouter
 from util import engine, Base
 
 app = FastAPI()
@@ -44,4 +45,11 @@ app.include_router(
     fileRouter,
     prefix='/file',
     tags=['file']
+)
+
+
+app.include_router(
+    levelRouter,
+    prefix='/level',
+    tags=['level']
 )

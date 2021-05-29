@@ -1,15 +1,13 @@
 from datetime import datetime
 
-from util import Base
+from pydantic import BaseModel
 
 
-class FileOut(Base):
+class FileOut(BaseModel):
     id: int
     name: str
     type: str
-    creation_date: datetime
+    upload_date: datetime
 
-
-class LevelCreate(Base):
-    name: str
-    type:  str
+    class Config:
+        orm_mode = True

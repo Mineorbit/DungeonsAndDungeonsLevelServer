@@ -13,13 +13,12 @@ from user.views import UserCreate
 from util import SessionMaker, oauth2_scheme, pwd_context
 
 
-def create_user(userCreate: UserCreate):
+def create_user(create: UserCreate):
     session = SessionMaker()
-
     user = User(
-        name=userCreate.name,
-        email=userCreate.email,
-        hashed_password=pwd_context.hash(userCreate.password)
+        name=create.name,
+        email=create.email,
+        hashed_password=pwd_context.hash(create.password)
     )
     session.add(user)
     session.commit()
