@@ -8,6 +8,7 @@ class LevelOut(BaseModel):
     ulid: int
     name: str
     upload_date: datetime
+    description: str
 
     class Config:
         orm_mode = True
@@ -15,6 +16,7 @@ class LevelOut(BaseModel):
 
 class LevelCreate(BaseModel):
     name: str
+    description: str
 
     class Config:
         orm_mode = True

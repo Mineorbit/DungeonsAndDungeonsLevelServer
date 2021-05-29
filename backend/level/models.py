@@ -1,10 +1,16 @@
 
 
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Sequence
-
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Sequence, Enum, UnicodeText, Text
+import enum
 from file.models import File
 from user.models import User
 from util import Base
+
+
+class Utility(enum.Enum):
+    LEVELDATA = 1
+    IMAGE = 2
+    THUMBNAIL = 3
 
 
 class Level(Base):
@@ -12,6 +18,7 @@ class Level(Base):
     ulid = Column(Integer, primary_key=True)
     name = Column(String)
     upload_date = Column(DateTime)
+    desciption = Column(Text)
 
 
 
@@ -28,5 +35,5 @@ class LevelFile(Base):
     __tablename__ = "level_file"
     level_id = Column(Integer, ForeignKey(Level.ulid), primary_key=True, index=True)
     file_id = Column(Integer, ForeignKey(File.id), primary_key=True, index=True)
-
+    type = Column(Enum(Utility), default=Utility.LEVELDATA)
 
