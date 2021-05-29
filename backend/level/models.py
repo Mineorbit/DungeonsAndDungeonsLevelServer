@@ -18,7 +18,7 @@ class Level(Base):
     ulid = Column(Integer, primary_key=True)
     name = Column(String)
     upload_date = Column(DateTime)
-    desciption = Column(Text)
+    description = Column(Text)
 
 
 

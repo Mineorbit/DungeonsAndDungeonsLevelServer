@@ -23,10 +23,12 @@ async def upload_level(create: LevelCreate = Depends(), levelFiles: UploadFile =
 
 @router.get("/", tags=["level"])
 async def get_level_meta_data(ulid: int):
+    metaData = level_controller.get_level(ulid)
+    return metaData
 
 
 @router.get("/download", tags=["level"])
 async def download_level(ulid: int):
-    file: File = level_controller.get_file_of_level(ulid)
+    file: File = level_controller.get_files_of_level(ulid)[0]
     f = await file_controller.download_file(file.id)
     return f
