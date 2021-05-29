@@ -47,6 +47,12 @@ def get_level(ulid: int):
     return level
 
 
+def get_levels():
+    session = SessionMaker()
+    levels = session.query(Level).all()
+    return levels
+
+
 def get_files_of_level(ulid: int, types = [Utility.LEVELDATA]):
     session = SessionMaker()
     files = session.query(LevelFile, File).filter(LevelFile.file_id == File.id).filter(LevelFile.level_id == ulid).\

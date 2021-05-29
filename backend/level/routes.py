@@ -21,6 +21,12 @@ async def upload_level(create: LevelCreate = Depends(), levelFiles: UploadFile =
 
 
 
+@router.get("/all", tags=["level"])
+async def get_level_meta_datas():
+    metaDatas = level_controller.get_levels()
+    return metaDatas
+
+
 @router.get("/", tags=["level"])
 async def get_level_meta_data(ulid: int):
     metaData = level_controller.get_level(ulid)
