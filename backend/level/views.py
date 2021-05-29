@@ -5,7 +5,7 @@ from pydantic import BaseModel
 
 
 class LevelOut(BaseModel):
-    uniqueGlobalLevelId: int
+    id: int
     name: str
     upload_date: datetime
 
