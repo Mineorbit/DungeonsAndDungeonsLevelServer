@@ -1,6 +1,7 @@
 from datetime import datetime
 from typing import List
 
+import LevelMetaDataList_pb2
 import LevelMetaData_pb2
 from base.views import Request, Response
 
@@ -24,6 +25,13 @@ class LevelMetaDataOut(Response):
 class LevelMetaDatasOut(Response):
 
     levels: List[LevelMetaDataOut]
+
+    def to_proto(self):
+        levelmetadatas = LevelMetaDataList_pb2.LevelMetaDataList()
+        for x in self.levels:
+            levelmetadatas.levels.append(x.to_proto())
+        return levelmetadatas
+
 
     class Config:
         orm_mode = True

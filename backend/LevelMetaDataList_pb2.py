@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x17LevelMetaDataList.proto\x12\x08NetLevel\x1a\x13LevelMetaData.proto\"B\n\x11LevelMetaDataList\x12-\n\x0clocalLevelId\x18\x01 \x03(\x0b\x32\x17.NetLevel.LevelMetaDatab\x06proto3'
+  serialized_pb=b'\n\x17LevelMetaDataList.proto\x12\x08NetLevel\x1a\x13LevelMetaData.proto\"<\n\x11LevelMetaDataList\x12\'\n\x06levels\x18\x01 \x03(\x0b\x32\x17.NetLevel.LevelMetaDatab\x06proto3'
   ,
   dependencies=[LevelMetaData__pb2.DESCRIPTOR,])
 
@@ -36,7 +36,7 @@ _LEVELMETADATALIST = _descriptor.Descriptor(
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='localLevelId', full_name='NetLevel.LevelMetaDataList.localLevelId', index=0,
+      name='levels', full_name='NetLevel.LevelMetaDataList.levels', index=0,
       number=1, type=11, cpp_type=10, label=3,
       has_default_value=False, default_value=[],
       message_type=None, enum_type=None, containing_type=None,
@@ -55,10 +55,10 @@ _LEVELMETADATALIST = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=58,
-  serialized_end=124,
+  serialized_end=118,
 )
 
-_LEVELMETADATALIST.fields_by_name['localLevelId'].message_type = LevelMetaData__pb2._LEVELMETADATA
+_LEVELMETADATALIST.fields_by_name['levels'].message_type = LevelMetaData__pb2._LEVELMETADATA
 DESCRIPTOR.message_types_by_name['LevelMetaDataList'] = _LEVELMETADATALIST
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 

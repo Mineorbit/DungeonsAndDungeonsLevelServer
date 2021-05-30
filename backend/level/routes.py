@@ -1,3 +1,5 @@
+from typing import List
+
 from fastapi import APIRouter, UploadFile, File, Depends
 import file.controllers as file_controller
 import level.controllers as level_controller
@@ -27,10 +29,9 @@ async def upload_level(create: LevelMetaDataCreate = Depends(), levelFiles: Uplo
 @router.get("/all", tags=["level"])
 @proto_resp
 async def get_all_level_meta_datas():
-    metaDatas = level_controller.get_levels()
-    levelMetaDatas = LevelMetaDatasOut()
-    levelMetaDatas.levels = metaDatas
-    return levelMetaDatas.from_orm()
+    metaDatas: List[Level] = level_controller.get_levels()
+    l = LevelMetaDatasOut(levels = metaDatas)
+    return l
 
 
 @router.get("/", tags=["level"])
