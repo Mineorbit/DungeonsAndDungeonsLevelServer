@@ -6,7 +6,7 @@ from decorators import proto_resp
 from level.models import Level
 from file.models import File as FileT
 
-from level.views import LevelMetaDataOut, LevelMetaDataCreate
+from level.views import LevelMetaDataOut, LevelMetaDataCreate, LevelMetaDatasOut
 from user.controllers import get_current_active_user
 from user.views import UserOut
 
@@ -28,7 +28,9 @@ async def upload_level(create: LevelMetaDataCreate = Depends(), levelFiles: Uplo
 @proto_resp
 async def get_all_level_meta_datas():
     metaDatas = level_controller.get_levels()
-    return metaDatas
+    levelMetaDatas = LevelMetaDatasOut()
+    levelMetaDatas.levels = metaDatas
+    return levelMetaDatas.from_orm()
 
 
 @router.get("/", tags=["level"])
