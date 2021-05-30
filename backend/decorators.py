@@ -1,6 +1,4 @@
 from merge_args import merge_args
-
-from LevelMetaData_pb2 import LevelMetaData
 from google.protobuf.json_format import MessageToJson
 
 def proto_resp(f):
@@ -8,7 +6,7 @@ def proto_resp(f):
     async def wrapped(proto_resp: bool, *args, **kwargs):
         r = await f(*args, **kwargs)
         if proto_resp:
-            return MessageToJson(r.to_proto())
+            return r.to_proto().SerializeToString()
         else:
             return r
     return wrapped
