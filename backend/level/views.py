@@ -1,20 +1,42 @@
 from datetime import datetime
+from typing import List
 
-from fastapi import UploadFile
-from pydantic import BaseModel
+import LevelMetaData_pb2
+from base.views import Request, Response
 
 
-class LevelOut(BaseModel):
+class LevelMetaDataOut(Response):
     ulid: int
     name: str
     upload_date: datetime
     description: str
 
+    def to_proto(self):
+        levelmetadata = LevelMetaData_pb2.LevelMetaData()
+        levelmetadata.uniqueLevelId = self.ulid
+        levelmetadata.FullName = self.name
+        levelmetadata.Description = self.description
+        return levelmetadata
     class Config:
         orm_mode = True
 
 
-class LevelCreate(BaseModel):
+class LevelMetaDatasOut(Response):
+
+    levels: List[LevelMetaDataOut]
+
+    class Config:
+        orm_mode = True
+
+
+class LevelMetaDataRequest(Request):
+    ulid: int
+
+    class Config:
+        orm_mode = True
+
+
+class LevelMetaDataCreate(Request):
     name: str
     description: str
 

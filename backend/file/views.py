@@ -2,8 +2,10 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
+from base.views import Response
 
-class FileOut(BaseModel):
+
+class FileOut(Response):
     id: int
     name: str
     type: str

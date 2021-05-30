@@ -1,10 +1,12 @@
 from fastapi import APIRouter, UploadFile, File, Depends
 import file.controllers as file_controller
 import level.controllers as level_controller
+from base.views import Request
+from decorators import proto_resp
 from level.models import Level
 from file.models import File as FileT
 
-from level.views import LevelOut, LevelCreate
+from level.views import LevelMetaDataOut, LevelMetaDataCreate
 from user.controllers import get_current_active_user
 from user.views import UserOut
 
@@ -12,25 +14,28 @@ router = APIRouter()
 
 
 @router.post("/", tags=["level"])
-async def upload_level(create: LevelCreate = Depends(), levelFiles: UploadFile = File(...), current_user: UserOut = Depends(get_current_active_user)):
+@proto_resp
+async def upload_level(create: LevelMetaDataCreate = Depends(), levelFiles: UploadFile = File(...), current_user: UserOut = Depends(get_current_active_user)):
     file: FileT = await file_controller.upload_file(levelFiles)
     level: Level = level_controller.add_level(create)
     level_controller.add_file_to_level(file.id,level.ulid)
     level_controller.add_user_to_level(current_user.id,level.ulid)
-    return LevelOut.from_orm(level)
+    return LevelMetaDataOut.from_orm(level)
 
 
 
 @router.get("/all", tags=["level"])
+@proto_resp
 async def get_all_level_meta_datas():
     metaDatas = level_controller.get_levels()
     return metaDatas
 
 
 @router.get("/", tags=["level"])
+@proto_resp
 async def get_level_meta_data(ulid: int):
     metaData = level_controller.get_level(ulid)
-    return metaData
+    return LevelMetaDataOut.from_orm(metaData)
 
 
 @router.get("/download", tags=["level"])

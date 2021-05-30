@@ -2,11 +2,11 @@ from datetime import datetime
 
 from file.models import File
 from level.models import Level, LevelFile, UserLevel, Utility
-from level.views import LevelCreate
+from level.views import LevelMetaDataCreate
 from util import SessionMaker
 
 
-def add_level(create: LevelCreate):
+def add_level(create: LevelMetaDataCreate):
     session = SessionMaker()
     level = Level(
         name=create.name,
