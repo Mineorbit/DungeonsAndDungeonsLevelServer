@@ -4,6 +4,8 @@ WORKDIR /frontend_web
 
 ENV PATH /frontend_web/node_modules/.bin:$PATH
 
+RUN ls
+
 COPY package.json ./
 COPY package-lock.json ./
 RUN npm install --silent
