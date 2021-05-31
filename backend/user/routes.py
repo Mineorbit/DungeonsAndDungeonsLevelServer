@@ -1,12 +1,5 @@
-from datetime import timedelta
-from http.client import HTTPException
-from typing import List
-
-from fastapi import APIRouter, Depends
-from fastapi.security import OAuth2PasswordRequestForm
-from starlette import status
-
-from config import ACCESS_TOKEN_EXPIRE_MINUTES
+from fastapi import APIRouter, Depends, HTTPException
+from decorators import proto_resp
 from user.controllers import get_current_active_user
 from user.views import UserCreate, UserOut
 from user import controllers as user_controller
@@ -16,6 +9,7 @@ router = APIRouter()
 
 
 @router.get("/", tags=["user"])
+@proto_resp
 async def read_users():
     users = user_controller.get_users()
     usersOut = []
@@ -30,12 +24,17 @@ async def add_users(userCreate: UserCreate):
 
 
 @router.get("/me/", response_model=UserOut)
+@proto_resp
 async def read_users_me(current_user: UserOut = Depends(get_current_active_user)):
     return current_user
 
 
 @router.get("/{username}", tags=["user"])
+@proto_resp
 async def read_user(username: str):
-    user_controller.get_user(username)
+    result = user_controller.get_user(username)
+    if result is None:
+        raise HTTPException(status_code=404, detail="User not found")
+    return result
 
 
