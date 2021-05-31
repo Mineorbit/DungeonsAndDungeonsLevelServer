@@ -1,8 +1,8 @@
 FROM node:13.12.0-alpine
 
-WORKDIR /
+WORKDIR /frontend_web
 
-ENV PATH /node_modules/.bin:$PATH
+ENV PATH /frontend_web/node_modules/.bin:$PATH
 
 COPY package.json ./
 COPY package-lock.json ./
