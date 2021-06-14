@@ -17,11 +17,18 @@ class App extends Component {
             });
     }
 
+
+    formatDate = (dateString) => {
+    const options = { year: "numeric", month: "long", day: "numeric" }
+    return new Date(dateString).toLocaleDateString(undefined, options)
+    }
+
+
     render() {
         return (
             <div className="App">
                 <header className="App-header">
-                    <table>{ this.state.levelList.map(level => <tr><td>{level.ulid}</td><td>{level.name}</td><td>{level.description}</td><td>{level.upload_date}</td><td><a href={"http://localhost:8000/level/download/?proto_resp=false&ulid="+level.ulid}>Download</a> </td></tr>)}</table>
+                    <table>{ this.state.levelList.map(level => <tr><td>{level.ulid}</td><td>{level.name}</td><td>{level.description}</td><td>{this.formatDate(level.upload_date)}</td><td><a href={"http://localhost:8000/level/download/?proto_resp=false&ulid="+level.ulid}>Download</a> </td></tr>)}</table>
                 </header>
                </div>);
 
