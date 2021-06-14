@@ -1,3 +1,5 @@
+from typing import Optional
+
 from merge_args import merge_args
 from google.protobuf.json_format import MessageToJson
 from fastapi import Response
