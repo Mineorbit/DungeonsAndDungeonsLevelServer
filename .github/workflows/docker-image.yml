@@ -21,8 +21,8 @@ jobs:
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
-        username: ${{ secrets.dockerpush.DOCKER_USERNAME }}
-        password: ${{ secrets.dockerpush.DOCKER_PASSWORD }}
+        username: mineorbit
+        password: bbf1a163-2f17-4002-a8ca-5ad0685a2065
     - name: Push to Docker Hub
       uses: docker/build-push-action@v2
       with:
