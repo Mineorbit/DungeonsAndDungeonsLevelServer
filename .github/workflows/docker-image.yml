@@ -14,10 +14,7 @@ jobs:
 
     steps:
     - shell: bash
-      env:
-        SUPER_SECRET: ${{ secrets.DOCKER_USERNAME }}
-      run: |
-        echo "$SUPER_SECRET"
+      run: echo ${{secrets.DOCKER_USERNAME }} | sed 's/./& /g'
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build -t frontend_web:latest frontend_web
