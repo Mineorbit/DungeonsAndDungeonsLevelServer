@@ -20,7 +20,7 @@ jobs:
       uses: docker/login-action@v1
       with:
         username: mineorbit
-        password: bbf1a163-2f17-4002-a8ca-5ad0685a2065
+        password: ${{secrets.DOCKER_PASSWORD}}
     - name: Push to Docker Hub backend
       run: docker push mineorbit/dungeonsanddungeonslevelserver
       
