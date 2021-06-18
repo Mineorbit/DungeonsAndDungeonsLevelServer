@@ -13,15 +13,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - shell: bash
-      run: echo ${{secrets.DOCKER_USERNAME }} | sed 's/./& /g'
     - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build -t frontend_web:latest frontend_web
+    - name: Build the backend Docker image
+      run: docker build -t mineorbit/dungeonsanddungeonslevelserver backend
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
         username: mineorbit
         password: bbf1a163-2f17-4002-a8ca-5ad0685a2065
-    - name: Push to Docker Hub
-      run: docker push mineorbit/dungeonsanddungeonslevelserver:frontend_web:latest
+    - name: Push to Docker Hub backend
+      run: docker push mineorbit/dungeonsanddungeonslevelserver
+      
