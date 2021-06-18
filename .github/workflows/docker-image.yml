@@ -24,7 +24,4 @@ jobs:
         username: mineorbit
         password: bbf1a163-2f17-4002-a8ca-5ad0685a2065
     - name: Push to Docker Hub
-      uses: docker/build-push-action@v2
-      with:
-        push: true
-        tags: dungeonsanddungeonslevelserver/frontend_web:latest
+      run: docker push mineorbit/dungeonsanddungeonslevelserver:frontend_web:latest
