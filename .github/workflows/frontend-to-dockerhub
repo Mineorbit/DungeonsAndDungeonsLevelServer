@@ -1,0 +1,25 @@
+name: Frontend to Dockerhub
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the frontend Docker image
+      run: docker build -t mineorbit/dungeonsanddungeonslevelserver-web frontend_web
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: mineorbit
+        password: bbf1a163-2f17-4002-a8ca-5ad0685a2065
+    - name: Push to Docker Hub backend
+      run: docker push mineorbit/dungeonsanddungeonslevelserver-web
