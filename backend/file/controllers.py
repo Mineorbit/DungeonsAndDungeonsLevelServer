@@ -33,6 +33,13 @@ async def upload_file(in_file: fastapi.UploadFile):
     return file
 
 
+def remove_file(file_id: int):
+    os.remove(file_path+"/"+str(file_id))
+    session = SessionMaker()
+    session.query(File).filter(File.id == file_id).delete()
+    session.commit()
+
+
 async def download_file(file_id: int):
     session = SessionMaker()
     f: File = session.query(File).filter(File.id == file_id).first()

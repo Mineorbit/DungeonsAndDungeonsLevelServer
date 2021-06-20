@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from file.models import File
+import file.controllers as file_controller
 from level.models import Level, LevelFile, UserLevel, Utility
 from level.views import LevelMetaDataCreate
 from util import SessionMaker
@@ -29,6 +30,16 @@ def add_file_to_level(f_id: int, l_id: int):
     session.commit()
     _lf = levelFile.file_id
 
+
+def remove_level(ulid: int):
+    session = SessionMaker()
+    files = session.query(LevelFile, File).filter(LevelFile.file_id == File.id).filter(LevelFile.level_id == ulid).\
+        with_entities(File).all()
+    for f in files:
+        file_controller.remove_file(f.id)
+    session.query(LevelFile).filter(LevelFile.level_id == ulid).delete()
+    session.query(Level).filter(Level.ulid == ulid).delete()
+    session.commit()
 
 def add_user_to_level(u_id: int, l_id: int):
     session = SessionMaker()
