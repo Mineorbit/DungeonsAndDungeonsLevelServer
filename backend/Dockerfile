@@ -5,10 +5,11 @@ WORKDIR /backend
 
 EXPOSE 8000
 
+RUN pip install -r requirements.txt
+
 COPY ./ /backend
 
 ENV IN_DOCKER Yes
 
-RUN pip install -r requirements.txt
 
 CMD ["python", "main.py"]

@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:C:\Users\mineo\DungeonsAndDungeonsLevelServer\backend\data\database.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="SQLite - identifier.sqlite" uuid="fffd0818-92c9-44ad-9b87-749d476f5953">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:identifier.sqlite</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
