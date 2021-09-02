@@ -11,7 +11,7 @@ from starlette.responses import FileResponse
 from file.models import File
 from util import SessionMaker
 
-from backend import config
+import config
 
 
 async def upload_file(in_file: fastapi.UploadFile):
