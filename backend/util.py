@@ -3,7 +3,7 @@ from passlib.context import CryptContext
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
-from backend import config
+import config
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
