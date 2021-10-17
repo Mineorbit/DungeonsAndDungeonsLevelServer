@@ -1,7 +1,7 @@
 from datetime import timedelta
-from http.client import HTTPException
 
 from fastapi import APIRouter, Depends
+from fastapi import HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from starlette import status
 

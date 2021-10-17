@@ -16,8 +16,8 @@ class Utility(enum.Enum):
 
 
 class Level(Base):
+    __table_args__ = {'extend_existing': True}
     __tablename__ = "level"
-    extend_existing=True
     ulid = Column(Integer, primary_key=True)
     name = Column(String)
     upload_date = Column(DateTime)
@@ -25,12 +25,14 @@ class Level(Base):
 
 
 class LevelDownload(Base):
+    __table_args__ = {'extend_existing': True}
     __tablename__ = "level_download"
     level_id = Column(Integer, ForeignKey(Level.ulid, ondelete="CASCADE"), primary_key=True, index=True)
     downloads = Column(Integer)
 
 
 class UserLevel(Base):
+    __table_args__ = {'extend_existing': True}
     __tablename__ = "user_level"
     level_id = Column(Integer, ForeignKey(Level.ulid, ondelete="CASCADE"), primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey(User.id, ondelete="CASCADE"), primary_key=True, index=True)
@@ -39,6 +41,7 @@ class UserLevel(Base):
 
 
 class LevelFile(Base):
+    __table_args__ = {'extend_existing': True}
     __tablename__ = "level_file"
     level_id = Column(Integer, ForeignKey(Level.ulid, ondelete="CASCADE"), primary_key=True, index=True)
     file_id = Column(Integer, ForeignKey(File.id, ondelete="CASCADE"), primary_key=True, index=True)
