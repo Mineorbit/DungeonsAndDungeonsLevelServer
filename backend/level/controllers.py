@@ -6,6 +6,8 @@ from level.models import Level, LevelFile, UserLevel, Utility
 from level.views import LevelMetaDataCreate
 from util import SessionMaker
 
+from backend.level.models import LevelDownload
+
 
 def add_level(create: LevelMetaDataCreate):
     session = SessionMaker()
@@ -16,7 +18,15 @@ def add_level(create: LevelMetaDataCreate):
     )
     session.add(level)
     session.commit()
-    _lid = level.ulid
+    lid = level.ulid
+
+    level_download = LevelDownload(
+        level_id=lid,
+        downloads=0
+
+    )
+    session.add(level_download)
+    session.commit()
     return level
 
 

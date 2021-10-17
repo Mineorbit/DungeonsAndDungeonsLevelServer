@@ -17,12 +17,17 @@ class Utility(enum.Enum):
 
 class Level(Base):
     __tablename__ = "level"
+    extend_existing=True
     ulid = Column(Integer, primary_key=True)
     name = Column(String)
     upload_date = Column(DateTime)
     description = Column(Text)
 
 
+class LevelDownload(Base):
+    __tablename__ = "level_download"
+    level_id = Column(Integer, ForeignKey(Level.ulid, ondelete="CASCADE"), primary_key=True, index=True)
+    downloads = Column(Integer)
 
 
 class UserLevel(Base):
