@@ -49,6 +49,7 @@ async def get_level_meta_data(ulid: int):
 @router.get("/download", tags=["level"])
 @proto_resp
 async def download_level(ulid: int):
+    level_controller.increment(ulid)
     file: File = level_controller.get_files_of_level(ulid)[0]
     f = await file_controller.download_file(file.id)
     return f
