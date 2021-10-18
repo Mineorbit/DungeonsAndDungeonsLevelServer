@@ -27,8 +27,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-Base.metadata.create_all(engine)
-
+try:
+    Base.metadata.create_all(engine)
+except Exception as e:
+    print(e)
 
 
 
