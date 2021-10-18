@@ -9,10 +9,11 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
-SQLALCHEMY_DATABASE_URL = "postgresql://db:db@46.232.248.108/api"
+if config.DB_TYPE == "PSQL":
+    SQLALCHEMY_DATABASE_URL = "postgresql://db:db@46.232.248.108/api"
+else:
+    SQLALCHEMY_DATABASE_URL = "sqlite:///"+config.PERMANENT_DATA+"/database.db"
 
-SQLALCHEMY_DATABASE_SQLITE_URL = "sqlite:///"+config.PERMANENT_DATA+"/database.db"
-# SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
