@@ -20,14 +20,21 @@ def add_level(create: LevelMetaDataCreate):
     session.commit()
     lid = level.ulid
 
+    session.expunge_all()
+    session.commit()
+    session.close()
+    return level
+
+
+def add_level_download(l_id: int):
+    session = SessionMaker()
     level_download = LevelDownload(
-        level_id=lid,
+        level_id=l_id,
         downloads=0
 
     )
     session.add(level_download)
     session.commit()
-    return level
 
 
 def add_file_to_level(f_id: int, l_id: int):

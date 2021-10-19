@@ -19,8 +19,9 @@ router = APIRouter()
 async def upload_level(create: LevelMetaDataCreate = Depends(), levelFiles: UploadFile = File(...), current_user: UserOut = Depends(get_current_active_user)):
     file: FileT = await file_controller.upload_file(levelFiles)
     level: Level = level_controller.add_level(create)
-    level_controller.add_file_to_level(file.id,level.ulid)
-    level_controller.add_user_to_level(current_user.id,level.ulid)
+    level_controller.add_file_to_level(file.id, level.ulid)
+    level_controller.add_level_download(level.ulid)
+    level_controller.add_user_to_level(current_user.id, level.ulid)
     return LevelMetaDataOut.from_orm(level)
 
 
