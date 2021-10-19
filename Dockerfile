@@ -3,7 +3,7 @@ FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
 EXPOSE 8000
 
-RUN pip install -r .\requirements.txt
+RUN pip install -r ./requirements.txt
 
 ENV IN_DOCKER Yes
 
