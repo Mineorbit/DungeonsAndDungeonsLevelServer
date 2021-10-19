@@ -28,6 +28,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 try:
+    Base.metadata.clear()
+    Base.metadata.reflect(engine=engine)
     Base.metadata.create_all(engine)
 except Exception as e:
     print(e)
