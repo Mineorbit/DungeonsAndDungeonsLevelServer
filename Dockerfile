@@ -5,6 +5,8 @@ EXPOSE 8000
 
 WORKDIR /
 
+COPY requirements.txt requirements.txt
+
 RUN pip install -r requirements.txt
 
 ENV IN_DOCKER Yes
