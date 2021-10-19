@@ -1,3 +1,3 @@
-from base.views import Request, Response
+#from base.views import Request, Response
 
 import google.protobuf.message

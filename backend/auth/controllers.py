@@ -3,9 +3,9 @@ from typing import Optional
 
 from jose import jwt
 
-from config import SECRET, ALGO
-from user.models import User
-from util import SessionMaker, pwd_context
+from backend.config import SECRET, ALGO
+from backend.user.models import User
+from backend.util import SessionMaker, pwd_context
 from werkzeug.security import check_password_hash
 
 

@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic.main import BaseModel
 
-from base.views import Response
+from backend.base.views import Response
 
 
 class Token(Response):

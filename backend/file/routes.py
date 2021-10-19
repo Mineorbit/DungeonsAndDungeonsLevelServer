@@ -1,8 +1,8 @@
 import aiofiles as aiofiles
 from fastapi import APIRouter, File, UploadFile
-import file.controllers as file_controller
-import config
-from file.views import FileOut
+import backend.file.controllers as file_controller
+from backend import  config
+from backend.file.views import FileOut
 
 router = APIRouter()
 

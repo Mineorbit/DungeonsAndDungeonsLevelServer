@@ -2,7 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel
 
-from base.views import Response
+from backend.base.views import Response
 
 
 class FileOut(Response):

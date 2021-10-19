@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException
-from decorators import proto_resp
-from user.controllers import get_current_active_user
-from user.views import UserCreate, UserOut
-from user import controllers as user_controller
+from backend.decorators import proto_resp
+from backend.user.controllers import get_current_active_user
+from backend.user.views import UserCreate, UserOut
+from backend.user import controllers as user_controller
 
 router = APIRouter()
 

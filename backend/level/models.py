@@ -4,9 +4,9 @@ from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Sequence, 
 import enum
 from sqlalchemy.orm import relationship
 
-from file.models import File
-from user.models import User
-from util import Base
+from backend.util import Base
+from backend.file.models import File
+from backend.user.models import User
 
 
 class Utility(enum.Enum):

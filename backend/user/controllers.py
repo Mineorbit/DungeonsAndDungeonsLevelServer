@@ -6,11 +6,11 @@ from fastapi import Depends
 from jose import jwt, JWTError
 from starlette import status
 
-from auth.views import TokenData
-from config import SECRET, ALGO
-from user.models import User
-from user.views import UserCreate
-from util import SessionMaker, oauth2_scheme, pwd_context
+from backend.auth.views import TokenData
+from backend.config import SECRET, ALGO
+from backend.user.models import User
+from backend.user.views import UserCreate
+from backend.util import SessionMaker, oauth2_scheme, pwd_context
 
 
 def create_user(create: UserCreate):

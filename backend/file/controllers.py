@@ -8,10 +8,10 @@ from os import path
 
 from starlette.responses import FileResponse
 
-from file.models import File
-from util import SessionMaker
+from backend.file.models import File
+from backend.util import SessionMaker
 
-import config
+from backend import config
 
 
 async def upload_file(in_file: fastapi.UploadFile):

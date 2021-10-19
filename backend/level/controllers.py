@@ -1,10 +1,10 @@
 from datetime import datetime
 
-from file.models import File
-import file.controllers as file_controller
-from level.models import Level, LevelFile, UserLevel, Utility
-from level.views import LevelMetaDataCreate
-from util import SessionMaker
+from backend.file.models import File
+import backend.file.controllers as file_controller
+from backend.level.models import Level, LevelFile, UserLevel, Utility
+from backend.level.views import LevelMetaDataCreate
+from backend.util import SessionMaker
 
 from backend.level.models import LevelDownload
 

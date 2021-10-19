@@ -5,9 +5,9 @@ from fastapi import HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from starlette import status
 
-from auth.controllers import authenticate_user, create_access_token
-from auth.views import Token
-from config import ACCESS_TOKEN_EXPIRE_MINUTES
+from backend.auth.controllers import authenticate_user, create_access_token
+from backend.auth.views import Token
+from backend.config import ACCESS_TOKEN_EXPIRE_MINUTES
 
 router = APIRouter()
 

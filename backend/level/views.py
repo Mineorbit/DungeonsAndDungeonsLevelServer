@@ -1,9 +1,9 @@
 from datetime import datetime
 from typing import List
 
-import LevelMetaDataList_pb2
-import LevelMetaData_pb2
-from base.views import Request, Response
+from backend import LevelMetaDataList_pb2
+from backend import LevelMetaData_pb2
+from backend.base.views import Request, Response
 
 
 class LevelMetaDataOut(Response):

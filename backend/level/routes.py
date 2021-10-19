@@ -1,16 +1,15 @@
 from typing import List
 
 from fastapi import APIRouter, UploadFile, File, Depends
-import file.controllers as file_controller
-import level.controllers as level_controller
-from base.views import Request
-from decorators import proto_resp
-from level.models import Level
-from file.models import File as FileT
+import backend.file.controllers as file_controller
+import backend.level.controllers as level_controller
+from backend.decorators import proto_resp
+from backend.level.models import Level
+from backend.file.models import File as FileT
 
-from level.views import LevelMetaDataOut, LevelMetaDataCreate, LevelMetaDatasOut
-from user.controllers import get_current_active_user
-from user.views import UserOut
+from backend.level.views import LevelMetaDataOut, LevelMetaDataCreate, LevelMetaDatasOut
+from backend.user.controllers import get_current_active_user
+from backend.user.views import UserOut
 
 router = APIRouter()
 

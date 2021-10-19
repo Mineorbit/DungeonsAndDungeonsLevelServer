@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime
 
-from util import Base
+from backend.util import Base
 
 
 class File(Base):
