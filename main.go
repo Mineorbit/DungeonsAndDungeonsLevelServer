@@ -5,6 +5,12 @@ import (
     "net/http"
 
     "github.com/gin-gonic/gin"
+	"database/sql"
+    "fmt"
+
+  _ "github.com/lib/pq"
+)
+
 )
 
 // album represents data about a record album.
@@ -22,12 +28,37 @@ var albums = []album{
     {ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
 }
 
+const (
+  host     = "localhost"
+  port     = 5432
+  user     = "api"
+  password = "api"
+  dbname   = "dungeonsanddungeonsapi"
+)
+
+
 // getAlbums responds with the list of all albums as JSON.
 func getAlbums(c *gin.Context) {
     c.IndentedJSON(http.StatusOK, albums)
 }
 
 func main() {
+    psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
+    "password=%s dbname=%s sslmode=disable",
+    host, port, user, password, dbname)
+	
+	db, err := sql.Open("postgres", psqlInfo)
+if err != nil {
+  panic(err)
+}
+defer db.Close()
+	
+err = db.Ping()
+if err != nil {
+  panic(err)
+}
+
+
     router := gin.Default()
     router.GET("/albums", getAlbums)
 
