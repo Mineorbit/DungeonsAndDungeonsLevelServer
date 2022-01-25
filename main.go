@@ -58,8 +58,14 @@ var user = User{
 
 func Login(c *gin.Context) {
   var u User
-  u.Username = c.Param("username")
-  u.Password = c.Param("password")
+  
+	err = req.ParseForm()
+	if err != nil {
+		panic(err)
+	}
+	v = req.Form
+	u.Username = req.Form.Get("username")
+	u.Password = req.Form.Get("password")
   fmt.Printf("%s", u.Username)
   //compare the user from the request, with the one we defined:
   if user.Username != u.Username || user.Password != u.Password {
