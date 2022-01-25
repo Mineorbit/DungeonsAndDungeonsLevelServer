@@ -52,8 +52,8 @@ ID uint64            `json:"id"`
 //A sample use
 var user = User{
  ID:          1,
- Username: "username",
- Password: "password",
+ Username: "Max",
+ Password: "Test123",
 }
 
 func Login(c *gin.Context) {
