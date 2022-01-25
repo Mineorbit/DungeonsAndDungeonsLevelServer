@@ -11,9 +11,6 @@ import (
     "fmt"
 
   _ "github.com/lib/pq"
-  
-	"log"
-  "net/http"
   "os"
   "time"
 )
