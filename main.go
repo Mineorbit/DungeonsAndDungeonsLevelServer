@@ -33,7 +33,7 @@ var albums = []album{
 const (
   host     = "localhost"
   port     = 5432
-  user     = "api"
+  dbuser     = "api"
   password = "api"
   dbname   = "dungeonsanddungeonsapi"
 )
@@ -96,7 +96,7 @@ func CreateToken(userId uint64) (string, error) {
 func main() {
     psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
     "password=%s dbname=%s sslmode=disable",
-    host, port, user, password, dbname)
+    host, port, dbuser, password, dbname)
 	
 	db, err := sql.Open("postgres", psqlInfo)
 if err != nil {
