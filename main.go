@@ -73,6 +73,8 @@ func Login(c *gin.Context) {
   c.JSON(http.StatusOK, token)
 }
 
+func UploadLevel(c *gin.Context){
+}
 
 func CreateToken(userId uint64) (string, error) {
   var err error
