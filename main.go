@@ -48,7 +48,7 @@ ID uint64            `json:"id"`
 //A sample use
 var user = User{
  ID:          1,
- Username: "Ma",
+ Username: "Max",
  Password: "Test123",
 }
 
