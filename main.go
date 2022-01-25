@@ -112,7 +112,7 @@ if err != nil {
 
     router := gin.Default()
     router.GET("/albums", getAlbums)
-	router.POST("/login/auth",Login);
+	router.POST("auth/token",Login);
 
     router.Run("0.0.0.0:8080")
 }
