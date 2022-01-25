@@ -58,15 +58,8 @@ var user = User{
 
 func Login(c *gin.Context) {
   var u User
-  
-	err = req.ParseForm()
-	if err != nil {
-		panic(err)
-	}
-	v = req.Form
-	u.Username = req.Form.Get("username")
-	u.Password = req.Form.Get("password")
-  fmt.Printf("%s", u.Username)
+  u.Username = c.PostForm("username")
+  u.Password = c.PostForm("password")
   //compare the user from the request, with the one we defined:
   if user.Username != u.Username || user.Password != u.Password {
      c.JSON(http.StatusUnauthorized, "Please provide valid login details")
