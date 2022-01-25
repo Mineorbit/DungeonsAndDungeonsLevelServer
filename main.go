@@ -60,7 +60,7 @@ func Login(c *gin.Context) {
   var u User
   u.Username = c.Param("username")
   u.Password = c.Param("password")
-  fmt.Println("name", u.Username)
+  fmt.Sprintf("name %s", u.Username)
   //compare the user from the request, with the one we defined:
   if user.Username != u.Username || user.Password != u.Password {
      c.JSON(http.StatusUnauthorized, "Please provide valid login details")
