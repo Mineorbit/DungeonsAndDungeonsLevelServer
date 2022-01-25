@@ -51,9 +51,10 @@ var user = User{
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
+  r.ParseForm()
   var u User
-  u.Username = c.PostForm("username")
-  u.Password = c.PostForm("password")
+  u.Username = r.Form.Get("username")
+  u.Password = r.Form.Get("password")
   //compare the user from the request, with the one we defined:
   if user.Username != u.Username || user.Password != u.Password {
   fmt.Fprintf(w, "Login Wrong, %q", html.EscapeString(r.URL.Path))
