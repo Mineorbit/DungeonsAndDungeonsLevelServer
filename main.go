@@ -5,8 +5,6 @@ import (
 
     "github.com/dgrijalva/jwt-go"
     "net/http"
-
-    "github.com/gin-gonic/gin"
 	"database/sql"
     "fmt"
 
