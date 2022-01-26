@@ -122,7 +122,7 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
         fmt.Println(err)
     }
 	
-	err = ioutil.WriteFile(file.FileName(),[]byte(fileBytes), 0644)
+	err = ioutil.WriteFile("test",[]byte(fileBytes), 0644)
 	
     // return that we have successfully uploaded our file!
     fmt.Fprintf(w, "Successfully Uploaded File\n")
