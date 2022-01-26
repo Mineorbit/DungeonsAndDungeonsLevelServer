@@ -93,8 +93,8 @@ func CreateToken(userId uint64) (string, error) {
 
 func uploadFile(w http.ResponseWriter, r *http.Request) {
 
-	proto_resp = r.URL.Query()["proto_resp"]
-	description = r.URL.Query()["description"]
+	proto_resp := r.URL.Query()["proto_resp"]
+	description := r.URL.Query()["description"]
 	
     // Parse our multipart form, 10 << 20 specifies a maximum
     // upload of 10 MB files.
