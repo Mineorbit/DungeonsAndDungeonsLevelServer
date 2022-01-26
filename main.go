@@ -131,8 +131,8 @@ func uploadFile(w http.ResponseWriter, r *http.Request) {
     tempFile.Write(fileBytes)
     // return that we have successfully uploaded our file!
     fmt.Fprintf(w, "Successfully Uploaded File\n")
-	fmt.Fprintf(w, description)
-	fmt.Fprintf(w, proto_resp)
+	fmt.Println(description)
+	fmt.Println(proto_resp)
 }
 
 func setupRoutes() {
