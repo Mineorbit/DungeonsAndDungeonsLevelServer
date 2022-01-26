@@ -1,4 +1,4 @@
-package DungeonsAndDungeonsLevelServer
+package main
 
 
 import (

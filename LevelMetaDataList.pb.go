@@ -4,7 +4,7 @@
 // 	protoc        v3.12.4
 // source: LevelMetaDataList.proto
 
-package DungeonsAndDungeonsLevelServer
+package main
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
