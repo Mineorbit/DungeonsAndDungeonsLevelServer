@@ -136,6 +136,8 @@ func setupRoutes() {
     http.ListenAndServe(":8080", nil)
 }
 
+
+
 func main() {
 
     psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
