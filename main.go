@@ -1,4 +1,4 @@
-package main
+package DungeonsAndDungeonsLevelServer
 
 
 import (
@@ -13,7 +13,6 @@ import (
     "io/ioutil"
   "os"
   "time"
-  "github.com/Mineorbit/DungeonsAndDungeonsLevelServer"
 )
 
 
