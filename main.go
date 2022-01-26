@@ -13,6 +13,7 @@ import (
     "io/ioutil"
   "os"
   "time"
+    "strconv"
 )
 
 
@@ -76,7 +77,7 @@ func CreateToken(userId uint64) (string, error) {
 
 func handleLevel(w http.ResponseWriter, r *http.Request){
 
-	proto_resp := r.URL.Query()["proto_resp"]
+	proto_resp := strconv.ParseBool(r.URL.Query()["proto_resp"])
 	switch r.Method {
 	case "GET":
 		getLevelList(w,r,proto_resp)
