@@ -79,8 +79,8 @@ func handleLevel(w http.ResponseWriter, r *http.Request){
 
 	proto_resp, err := strconv.ParseBool(r.URL.Query()["proto_resp"][0])
 	if err != nil {
-            log.Fatal(err)
-        }
+        fmt.Println(err)
+    }
 	switch r.Method {
 	case "GET":
 		getLevelList(w,r,proto_resp)
