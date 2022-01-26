@@ -77,7 +77,7 @@ func CreateToken(userId uint64) (string, error) {
 
 func handleLevel(w http.ResponseWriter, r *http.Request){
 
-	proto_resp, err := strconv.ParseBool(r.URL.Query()["proto_resp"])
+	proto_resp, err := strconv.ParseBool(r.URL.Query()["proto_resp"][0])
 	if err != nil {
             log.Fatal(err)
         }
