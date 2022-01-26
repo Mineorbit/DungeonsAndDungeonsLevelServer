@@ -13,7 +13,7 @@ import (
     "io/ioutil"
   "os"
   "time"
-  "DungeonsAndDungeonsLevelServer"
+  "github.com/Mineorbit/DungeonsAndDungeonsLevelServer"
 )
 
 
