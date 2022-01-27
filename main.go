@@ -137,7 +137,10 @@ func setupRoutes() {
     http.ListenAndServe(":8080", nil)
 }
 
-
+func setupTables(db *DB) {
+	fmt.Printf("Setting up database tables")
+	rows, err := db.Query("CREATE TABLE IF NOT EXISTS levels (id SERIAL ,name varchar(32));")
+}
 
 func main() {
 
@@ -155,7 +158,7 @@ err = db.Ping()
 if err != nil {
   panic(err)
 }
-
-    fmt.Println("Hello World")
+    setupTables(db)
     setupRoutes()
+    fmt.Println(" === API Online === ")
 }
