@@ -25,7 +25,7 @@ const (
   dbname   = "dungeonsanddungeonsapi"
 )
 
-
+var database *sql.DB
 
 type User struct {
 ID uint64            `json:"id"`
@@ -92,13 +92,39 @@ func handleLevel(w http.ResponseWriter, r *http.Request){
 func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	fmt.Printf("Request /level/ \n")
 
-    level := LevelMetaData{
-		FullName: "TestLevel",
+	var (
+	id int
+	name string
+	)
+	
+	levelList := []*LevelMetaData
+	
+	rows, err := db.Query("select id, name from levels", 1)
+	if err != nil {
+		log.Fatal(err)
 	}
-	levels := LevelMetaDataList{
-		Levels: []*LevelMetaData {&level},
+	defer rows.Close()
+	for rows.Next() {
+		err := rows.Scan(&id, &name)
+		if err != nil {
+			log.Fatal(err)
+		}
+		level := LevelMetaData{
+		UniqueLevelId: id,
+		FullName: name,
+		}
+		append(levelList, &level)
 	}
-    fmt.Fprintf(w, levels.String())
+	err = rows.Err()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	levelListResult:= LevelMetaDataList{
+	Levels: levelList
+	}
+
+    fmt.Fprintf(w, levelListResult.String())
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request, proto_resp bool) {
@@ -170,5 +196,6 @@ if err != nil {
   panic(err)
 }
     setupTables(db)
+	database = db
     setupRoutes()
 }
