@@ -97,7 +97,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	name string
 	)
 	
-	levelList := []*LevelMetaData
+	levelList := []*LevelMetaData{}
 	
 	rows, err := db.Query("select id, name from levels", 1)
 	if err != nil {
