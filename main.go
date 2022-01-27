@@ -97,15 +97,6 @@ func handleLevel(w http.ResponseWriter, r *http.Request){
 	}
 }
 
-func ProtobufToJSON(message proto.Message) (string, error) {
-    b, err := protojson.MarshalOptions{
-        Indent: true,
-        UseProtoNames: true,
-        EmitUnpopulated: true,
-    }
-    return string(b), err
-}
-
 func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	fmt.Printf("Request /level/ \n")
 
@@ -118,7 +109,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	
 	if db == nil {
 	
-	fmt.Printf("DB IS NILL \n")
+	fmt.Printf("DB IS NIL \n")
 	
 	}
 	
@@ -150,7 +141,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	levelListResult:= LevelMetaDataList{
 	Levels: levelList,
 	}
-    b, err  := ProtobufToJSON(levelListResult)
+    fmt.Fprintf(w, "{ "+levelListResult.String()+" }")
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request, proto_resp bool) {
