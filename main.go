@@ -199,6 +199,6 @@ if err != nil {
   panic(err)
 }
     setupTables(db)
-	database = db
+	database = *db
     setupRoutes()
 }
