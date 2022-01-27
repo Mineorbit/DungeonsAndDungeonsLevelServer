@@ -113,7 +113,8 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 		//fmt.Printf(err)
 	}
 	defer rows.Close()
-	for rows.Next() {
+	if rows != nil {
+		for rows.Next() {
 		err := rows.Scan(&id, &name)
 		if err != nil {
 		//fmt.Printf(err)
@@ -123,6 +124,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 		FullName: name,
 		}
 		levelList = append(levelList, &level)
+		}
 	}
 	err = rows.Err()
 	if err != nil {
