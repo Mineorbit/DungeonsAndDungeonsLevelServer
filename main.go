@@ -138,7 +138,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	Levels: levelList,
 	}
 
-    fmt.Fprintf(w, "{"+levelListResult.String()+"}")
+    proto.Unmarshal(w,levelListResult)
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request, proto_resp bool) {
