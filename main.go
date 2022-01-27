@@ -147,8 +147,9 @@ func setupRoutes() {
 }
 
 func setupTables(db *sql.DB) {
-	fmt.Printf("Setting up database tables")
+	fmt.Printf("=== Setting up database tables ===\n")
 	db.Query("CREATE TABLE IF NOT EXISTS levels (id SERIAL ,name varchar(32));")
+	fmt.Printf("Created level table\n")
 }
 
 func main() {
