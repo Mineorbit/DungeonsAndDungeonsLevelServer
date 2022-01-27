@@ -17,7 +17,6 @@ import (
 	
 	"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
-	"github.com/simplesteph/protobuf-example-go/src/simple"
 )
 
 
