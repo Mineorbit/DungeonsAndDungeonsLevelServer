@@ -14,6 +14,7 @@ import (
   "os"
   "time"
     "strconv"
+	"log"
 )
 
 
@@ -110,11 +111,15 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	
 	rows, err := db.Query("select id, name from levels", 1)
 	if err != nil {
-		fmt.Printf(err.String())
+		log.Fatal(err)
 	}
 	defer rows.Close()
 	for rows.Next() {
 		err := rows.Scan(&id, &name)
+		
+		if err != nil {
+		log.Fatal(err)
+		}
 		
 		level := LevelMetaData{
 		UniqueLevelId: id,
@@ -124,8 +129,9 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 		levelList = append(levelList, &level)
 	}
 	err = rows.Err()
+	
 	if err != nil {
-		fmt.Printf(err.String())
+		log.Fatal(err)
 	}
 
 	levelListResult:= LevelMetaDataList{
