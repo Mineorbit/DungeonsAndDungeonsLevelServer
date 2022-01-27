@@ -9,12 +9,15 @@ import (
     "fmt"
 
   _ "github.com/lib/pq"
-	"google.golang.org/protobuf"
     "io/ioutil"
   "os"
   "time"
     "strconv"
 	"log"
+	
+	"github.com/golang/protobuf/jsonpb"
+	"github.com/golang/protobuf/proto"
+	"github.com/simplesteph/protobuf-example-go/src/simple"
 )
 
 
