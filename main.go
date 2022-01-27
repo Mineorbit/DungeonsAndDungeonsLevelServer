@@ -92,11 +92,10 @@ func handleLevel(w http.ResponseWriter, r *http.Request){
 func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 
     level := pb.LevelMetaData{
-		UniqueLevelId: 1,
 		FullName: "TestLevel",
 	}
-    levels := pb.LevelMetaDataList{
-	Levels := [1]pb.LevelMetaData {level}
+	levels := pb.LevelMetaDataList{
+		Levels: pb.LevelMetaData[1] {level}
 	}
     fmt.Fprintf(w, levels.String())
 }
