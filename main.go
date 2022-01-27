@@ -16,7 +16,9 @@ import (
 	"log"
 	
 	//"github.com/golang/protobuf/jsonpb"
-	"github.com/golang/protobuf/proto"
+	
+    "google.golang.org/protobuf/proto"
+    "google.golang.org/protobuf/encoding/protojson"
 )
 
 
@@ -95,6 +97,15 @@ func handleLevel(w http.ResponseWriter, r *http.Request){
 	}
 }
 
+func ProtobufToJSON(message proto.Message) (string, error) {
+    b, err := protojson.MarshalOptions{
+        Indent: true,
+        UseProtoNames: true,
+        EmitUnpopulated: true,
+    }
+    return string(b), err
+}
+
 func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	fmt.Printf("Request /level/ \n")
 
@@ -139,8 +150,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	levelListResult:= LevelMetaDataList{
 	Levels: levelList,
 	}
-	var data []byte
-    proto.Unmarshal(data,levelListResult)
+    b, err  := ProtobufToJSON(levelListResult)
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request, proto_resp bool) {
