@@ -95,7 +95,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 		FullName: "TestLevel",
 	}
 	levels := LevelMetaDataList{
-		Levels: []*LevelMetaData {level},
+		Levels: []*LevelMetaData {&level},
 	}
     fmt.Fprintf(w, levels.String())
 }
