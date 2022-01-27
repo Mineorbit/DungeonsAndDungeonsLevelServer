@@ -9,13 +9,12 @@ import (
     "fmt"
 
   _ "github.com/lib/pq"
-  
+	"github.com/golang/protobuf"
     "io/ioutil"
   "os"
   "time"
     "strconv"
 	"log"
-	"proto"
 )
 
 
