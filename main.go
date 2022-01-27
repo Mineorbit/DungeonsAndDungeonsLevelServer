@@ -139,8 +139,8 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	levelListResult:= LevelMetaDataList{
 	Levels: levelList,
 	}
-
-    proto.Unmarshal(w,levelListResult)
+	var data []byte
+    proto.Unmarshal(levelListResult)
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request, proto_resp bool) {
