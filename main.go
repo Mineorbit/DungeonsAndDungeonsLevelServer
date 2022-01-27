@@ -40,7 +40,7 @@ var user = User{
 
 
 
-var database sql.DB
+var db *sql.DB
 
 func Login(w http.ResponseWriter, r *http.Request) {
   r.ParseForm()
@@ -102,7 +102,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	
 	levelList := []*LevelMetaData{}
 	
-	rows, err := database.Query("select id, name from levels", 1)
+	rows, err := db.Query("select id, name from levels", 1)
 	if err != nil {
 		//fmt.Printf(err)
 	}
@@ -176,7 +176,7 @@ func setupRoutes() {
     http.ListenAndServe(":8080", nil)
 }
 
-func setupTables(db *sql.DB) {
+func setupTables() {
 	fmt.Printf("=== Setting up database tables ===\n")
 	db.Query("CREATE TABLE IF NOT EXISTS levels (id SERIAL ,name varchar(32));")
 	fmt.Printf("Created level table\n")
@@ -188,7 +188,8 @@ func main() {
     "password=%s dbname=%s sslmode=disable",
     host, port, dbuser, password, dbname)
 	
-	db, err := sql.Open("postgres", psqlInfo)
+	var err error
+	db, err = sql.Open("postgres", psqlInfo)
 if err != nil {
   panic(err)
 }
@@ -198,7 +199,6 @@ err = db.Ping()
 if err != nil {
   panic(err)
 }
-    setupTables(db)
-	database = *db
+    setupTables()
     setupRoutes()
 }
