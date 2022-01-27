@@ -25,7 +25,6 @@ const (
   dbname   = "dungeonsanddungeonsapi"
 )
 
-var database *sql.DB
 
 type User struct {
 ID uint64            `json:"id"`
@@ -38,6 +37,10 @@ var user = User{
  Username: "Max",
  Password: "Test123",
 }
+
+
+
+var database sql.DB
 
 func Login(w http.ResponseWriter, r *http.Request) {
   r.ParseForm()
