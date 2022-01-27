@@ -91,7 +91,7 @@ func handleLevel(w http.ResponseWriter, r *http.Request){
 
 func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 
-    level := pb.LevelMetaData{
+    level := LevelMetaData{
 		FullName: "TestLevel",
 	}
 	
