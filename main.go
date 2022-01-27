@@ -109,7 +109,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	
 	}
 	
-	rows, err := db.Query("select id, name from levels", 1)
+	rows, err := db.Query("select id, name from levels")
 	if err != nil {
 		log.Fatal(err)
 	}
