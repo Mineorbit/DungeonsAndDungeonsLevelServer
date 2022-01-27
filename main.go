@@ -134,6 +134,8 @@ func uploadFile(w http.ResponseWriter, r *http.Request, proto_resp bool) {
 func setupRoutes() {
     http.HandleFunc("/level/", handleLevel)
 	http.HandleFunc("/auth/token",Login)
+
+    fmt.Println(" === API Online === ")
     http.ListenAndServe(":8080", nil)
 }
 
@@ -160,5 +162,4 @@ if err != nil {
 }
     setupTables(db)
     setupRoutes()
-    fmt.Println(" === API Online === ")
 }
