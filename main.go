@@ -137,7 +137,7 @@ func setupRoutes() {
     http.ListenAndServe(":8080", nil)
 }
 
-func setupTables(db *DB) {
+func setupTables(db *sql.DB) {
 	fmt.Printf("Setting up database tables")
 	rows, err := db.Query("CREATE TABLE IF NOT EXISTS levels (id SERIAL ,name varchar(32));")
 }
