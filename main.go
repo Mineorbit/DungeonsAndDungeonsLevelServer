@@ -102,6 +102,12 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	
 	levelList := []*LevelMetaData{}
 	
+	if db == nil {
+	
+	fmt.Printf("DB IS NILL \n")
+	
+	}
+	
 	rows, err := db.Query("select id, name from levels", 1)
 	if err != nil {
 		//fmt.Printf(err)
