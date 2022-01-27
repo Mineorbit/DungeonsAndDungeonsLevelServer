@@ -110,24 +110,23 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	
 	rows, err := db.Query("select id, name from levels", 1)
 	if err != nil {
-		//fmt.Printf(err)
+		fmt.Printf(err.String())
 	}
 	defer rows.Close()
-		for rows.Next() {
+	for rows.Next() {
 		err := rows.Scan(&id, &name)
-		if err != nil {
-		//fmt.Printf(err)
-		}
+		
 		level := LevelMetaData{
 		UniqueLevelId: id,
 		FullName: name,
 		}
+		
 		levelList = append(levelList, &level)
 	}
-	//err = rows.Err()
-	//if err != nil {
-		//fmt.Printf(err)
-	//}
+	err = rows.Err()
+	if err != nil {
+		fmt.Printf(err.String())
+	}
 
 	levelListResult:= LevelMetaDataList{
 	Levels: levelList,
