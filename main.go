@@ -15,7 +15,7 @@ import (
     "strconv"
 	"log"
 	
-	"github.com/golang/protobuf/jsonpb"
+	//"github.com/golang/protobuf/jsonpb"
 	"github.com/golang/protobuf/proto"
 )
 
@@ -140,7 +140,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	Levels: levelList,
 	}
 	var data []byte
-    proto.Unmarshal(levelListResult)
+    proto.Unmarshal(data,levelListResult)
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request, proto_resp bool) {
