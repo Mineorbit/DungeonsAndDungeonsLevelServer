@@ -94,8 +94,10 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
     level := LevelMetaData{
 		FullName: "TestLevel",
 	}
-	
-    fmt.Fprintf(w, level.String())
+	levels := LevelMetaDataList{
+		Levels: LevelMetaData[1] {level}
+	}
+    fmt.Fprintf(w, levels.String())
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request, proto_resp bool) {
