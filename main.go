@@ -90,6 +90,7 @@ func handleLevel(w http.ResponseWriter, r *http.Request){
 }
 
 func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
+	fmt.Printf("Request /level/ \n")
 
     level := LevelMetaData{
 		FullName: "TestLevel",
@@ -142,7 +143,7 @@ func setupRoutes() {
     http.HandleFunc("/level/", handleLevel)
 	http.HandleFunc("/auth/token",Login)
 
-    fmt.Println(" === API Online === ")
+    fmt.Println("=== API Online ===\n")
     http.ListenAndServe(":8080", nil)
 }
 
