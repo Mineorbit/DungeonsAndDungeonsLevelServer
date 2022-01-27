@@ -139,7 +139,7 @@ func setupRoutes() {
 
 func setupTables(db *sql.DB) {
 	fmt.Printf("Setting up database tables")
-	rows, err := db.Query("CREATE TABLE IF NOT EXISTS levels (id SERIAL ,name varchar(32));")
+	db.Query("CREATE TABLE IF NOT EXISTS levels (id SERIAL ,name varchar(32));")
 }
 
 func main() {
