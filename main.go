@@ -19,7 +19,11 @@ import (
 	
     //"google.golang.org/protobuf/proto"
     //"google.golang.org/protobuf/encoding/protojson"
+	
+    "github.com/golang/protobuf/jsonpb"
+    "github.com/golang/protobuf/proto"
 )
+
 
 
 const (
@@ -97,6 +101,18 @@ func handleLevel(w http.ResponseWriter, r *http.Request){
 	}
 }
 
+// ProtobufToJSON converts protocol buffer message to JSON string
+func ProtobufToJSON(message proto.Message) (string, error) {
+    marshaler := jsonpb.Marshaler{
+        EnumsAsInts:  false,
+        EmitDefaults: true,
+        Indent:       "  ",
+        OrigName:     true,
+    }
+
+    return marshaler.MarshalToString(message)
+}
+
 func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	fmt.Printf("Request /level/ \n")
 
@@ -141,7 +157,8 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	levelListResult:= LevelMetaDataList{
 	Levels: levelList,
 	}
-    fmt.Fprintf(w, "{ "+levelListResult.String()+" }")
+	b ,err = ProtobufToJSON(levelListResult)
+    fmt.Fprintf(w,)
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request, proto_resp bool) {
