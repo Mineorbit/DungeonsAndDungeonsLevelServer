@@ -11,7 +11,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
 
 if config.DB_TYPE == "PSQL":
-    SQLALCHEMY_DATABASE_URL = "postgresql://api:api@127.0.0.1/dungeonsanddungeonsapi"
+    SQLALCHEMY_DATABASE_URL = "postgresql://api:api@localhost/dungeonsanddungeonsapi"
 else:
     SQLALCHEMY_DATABASE_URL = "sqlite:///" + config.PERMANENT_DATA + "/database.db"
 
