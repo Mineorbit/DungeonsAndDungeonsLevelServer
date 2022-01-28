@@ -20,6 +20,10 @@ class Level(Base):
     name = Column(String)
     upload_date = Column(DateTime)
     description = Column(Text)
+    availBlue = Column(Boolean)
+    availGreen = Column(Boolean)
+    availRed = Column(Boolean)
+    availYellow = Column(Boolean)
 
 
 class LevelDownload(Base):
