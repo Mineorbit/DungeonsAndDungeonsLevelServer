@@ -1,0 +1,3 @@
+[submodule "DungeonsAndDungeonsCommon"]
+	path = DungeonsAndDungeonsCommon
+	url = https://github.com/Mineorbit/DungeonsAndDungeonsCommon.git
