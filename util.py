@@ -15,7 +15,6 @@ if config.DB_TYPE == "PSQL":
 else:
     SQLALCHEMY_DATABASE_URL = "sqlite:///" + config.PERMANENT_DATA + "/database.db"
 
-
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL
 )
