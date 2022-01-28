@@ -56,6 +56,10 @@ class LevelMetaDataRequest(Request):
 class LevelMetaDataCreate(Request):
     name: str
     description: str
-
+    r: str
+    g: str
+    b: str
+    y: str
+        
     class Config:
         orm_mode = True
