@@ -20,8 +20,8 @@ async def upload_level(create: LevelMetaDataCreate = Depends(), levelFiles: Uplo
     file: FileT = await file_controller.upload_file(levelFiles)
     thumbnail: FileT = await file_controller.upload_file(thumbnail)
     level: Level = level_controller.add_level(create)
-    level_controller.add_file_to_level(file.id, level.ulid, fileType=Utility.THUMBNAIL)
-    level_controller.add_file_to_level(thumbnail.id,  level.ulid)
+    level_controller.add_file_to_level(file.id, level.ulid)
+    level_controller.add_file_to_level(thumbnail.id,  level.ulid, fileType=Utility.THUMBNAIL)
     level_controller.add_level_download(level.ulid)
     level_controller.add_user_to_level(current_user.id, level.ulid)
     return LevelMetaDataOut.from_orm(level)
@@ -29,7 +29,7 @@ async def upload_level(create: LevelMetaDataCreate = Depends(), levelFiles: Uplo
 @router.get("/pic", tags=["level"])
 @proto_resp
 async def download_thumbnail(ulid: int):
-    list = level_controller.get_files_of_level(ulid, types=[Utility.THUMBNAIL])
+    list = level_controller.get_files_of_level(ulid, type=[Utility.THUMBNAIL])
     if len(list) == 0:
         raise HTTPException(status_code=404, detail="No Thumbnail available for this level")
     file: File = list[0]
