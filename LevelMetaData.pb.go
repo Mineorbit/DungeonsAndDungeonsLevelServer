@@ -50,7 +50,7 @@ func (x *LevelMetaData) String() string {
 
 func (*LevelMetaData) ProtoMessage() {}
 
-func (x *LevelMetaData) ProtoReflect() protoreflect.Message {
+func (x *LevelMetaData) ProtoReflect() protoreflect.ProtoMessage {
 	mi := &file_LevelMetaData_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
