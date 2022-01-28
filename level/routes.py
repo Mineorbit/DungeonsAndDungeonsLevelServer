@@ -44,9 +44,13 @@ async def get_all_level_meta_datas():
     l = LevelMetaDatasOut(levels = metaDatas)
     return l
 
-@router.delete("/")
+@router.delete("/", status_code=200)
 async def remove_level(ulid: int,_UserOut = Depends(get_current_active_user)):
-    level_controller.remove_level(ulid)
+    try:
+        level_controller.remove_level(ulid)
+    except Exception:
+        pass
+    return {"message": "Level deleted"}
 
 
 

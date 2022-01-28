@@ -33,7 +33,10 @@ async def upload_file(in_file: fastapi.UploadFile):
 
 
 def remove_file(file_id: int):
-    os.remove(config.PERMANENT_DATA + "/" + str(file_id))
+    try:
+        os.remove(config.PERMANENT_DATA + "/" + str(file_id))
+    except Exception:
+        pass
     session = SessionMaker()
     session.query(File).filter(File.id == file_id).delete()
     session.commit()
