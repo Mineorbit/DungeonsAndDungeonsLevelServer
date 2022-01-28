@@ -15,10 +15,10 @@ def add_level(create: LevelMetaDataCreate):
         name=create.name,
         upload_date=datetime.today(),
         description=create.description,
-        r=bool(create.r),
-        g=bool(create.g),
-        b=bool(create.b),
-        y=bool(create.y)
+        availRed=bool(create.r),
+        availGreen=bool(create.g),
+        availBlue=bool(create.b),
+        availYellow=bool(create.y)
     )
     session.add(level)
     session.commit()
