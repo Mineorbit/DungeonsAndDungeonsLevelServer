@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, UploadFile, File, Depends
+from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
 import file.controllers as file_controller
 import level.controllers as level_controller
 from decorators import proto_resp
@@ -29,7 +29,10 @@ async def upload_level(create: LevelMetaDataCreate = Depends(), levelFiles: Uplo
 @router.get("/pic", tags=["level"])
 @proto_resp
 async def download_thumbnail(ulid: int):
-    file: File = level_controller.get_files_of_level(ulid, types=Utility.THUMBNAIL)[0]
+    list = level_controller.get_files_of_level(ulid, types=[Utility.THUMBNAIL])
+    if len(list) == 0:
+        raise HTTPException(status_code=404, detail="No Thumbnail available for this level")
+    file: File = list[0]
     f = await file_controller.download_file(file.id)
     return f
 
