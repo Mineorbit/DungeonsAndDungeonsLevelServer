@@ -11,12 +11,20 @@ class LevelMetaDataOut(Response):
     name: str
     upload_date: datetime
     description: str
+    availBlue: bool
+    availGreen: bool
+    availRed: bool
+    availYellow: bool
 
     def to_proto(self):
         levelmetadata = LevelMetaData_pb2.LevelMetaData()
         levelmetadata.uniqueLevelId = self.ulid
         levelmetadata.FullName = self.name
         levelmetadata.Description = self.description
+        levelmetadata.availBlue = self.availBlue
+        levelmetadata.availGreen = self.availGreen
+        levelmetadata.availYellow = self.availYellow
+        levelmetadata.availRed = self.availRed
         return levelmetadata
 
     class Config:
