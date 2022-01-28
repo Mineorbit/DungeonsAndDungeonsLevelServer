@@ -14,7 +14,7 @@ import (
   "time"
     "strconv"
 	"log"
-	"proto"
+	"google.golang.org/protobuf/proto"
 )
 
 
