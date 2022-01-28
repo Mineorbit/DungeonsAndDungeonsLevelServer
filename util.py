@@ -9,6 +9,7 @@ pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="auth/token")
 
+
 if config.DB_TYPE == "PSQL":
     SQLALCHEMY_DATABASE_URL = "postgresql://api:api@127.0.0.1/dungeonsanddungeonsapi"
 else:
