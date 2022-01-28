@@ -29,7 +29,7 @@ async def upload_level(create: LevelMetaDataCreate = Depends(), levelFiles: Uplo
 @router.get("/pic", tags=["level"])
 @proto_resp
 async def download_thumbnail(ulid: int):
-    list = level_controller.get_files_of_level(ulid, type=[Utility.THUMBNAIL])
+    list = level_controller.get_files_of_level(ulid, types=[Utility.THUMBNAIL])
     if len(list) == 0:
         raise HTTPException(status_code=404, detail="No Thumbnail available for this level")
     file: File = list[0]
