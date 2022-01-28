@@ -140,7 +140,7 @@ func getLevelList(w http.ResponseWriter, r *http.Request, proto_resp bool){
 	Levels: levelList,
 	}
 	var data []byte
-	err = proto.Unmarshal(data, levelListResult.ProtoReflect().ProtoMessage())
+	err = proto.Unmarshal(data, levelListResult.ProtoReflect())
     fmt.Fprintf(w,"Test")
 }
 
