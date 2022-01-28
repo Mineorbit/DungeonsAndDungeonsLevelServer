@@ -41,11 +41,12 @@ def add_level_download(l_id: int):
     session.commit()
 
 
-def add_file_to_level(f_id: int, l_id: int):
+def add_file_to_level(f_id: int, l_id: int, fileType: Utility = Utility.LEVELDATA):
     session = SessionMaker()
     levelFile = LevelFile(
         level_id = l_id,
-        file_id = f_id
+        file_id = f_id,
+        type = fileType,
     )
     session.add(levelFile)
     session.commit()

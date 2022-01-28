@@ -4,7 +4,7 @@ from fastapi import APIRouter, UploadFile, File, Depends
 import file.controllers as file_controller
 import level.controllers as level_controller
 from decorators import proto_resp
-from level.models import Level
+from level.models import Level, Utility
 from file.models import File as FileT
 
 from level.views import LevelMetaDataOut, LevelMetaDataCreate, LevelMetaDatasOut
@@ -16,14 +16,22 @@ router = APIRouter()
 
 @router.post("/", tags=["level"])
 @proto_resp
-async def upload_level(create: LevelMetaDataCreate = Depends(), levelFiles: UploadFile = File(...), current_user: UserOut = Depends(get_current_active_user)):
+async def upload_level(create: LevelMetaDataCreate = Depends(), levelFiles: UploadFile = File(...),thumbnail: UploadFile = File(...), current_user: UserOut = Depends(get_current_active_user)):
     file: FileT = await file_controller.upload_file(levelFiles)
+    thumbnail: FileT = await file_controller.upload_file(thumbnail, Utility.THUMBNAIL)
     level: Level = level_controller.add_level(create)
     level_controller.add_file_to_level(file.id, level.ulid)
+    level_controller.add_file_to_level(thumbnail.id,  level.ulid)
     level_controller.add_level_download(level.ulid)
     level_controller.add_user_to_level(current_user.id, level.ulid)
     return LevelMetaDataOut.from_orm(level)
 
+@router.get("/pic", tags=["level"])
+@proto_resp
+async def download_thumbnail(ulid: int):
+    file: File = level_controller.get_files_of_level(ulid, types=Utility.THUMBNAIL)[0]
+    f = await file_controller.download_file(file.id)
+    return f
 
 
 @router.get("/all", tags=["level"])
