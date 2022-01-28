@@ -14,7 +14,11 @@ def add_level(create: LevelMetaDataCreate):
     level = Level(
         name=create.name,
         upload_date=datetime.today(),
-        description=create.description
+        description=create.description,
+        r=bool(create.r),
+        g=bool(create.g),
+        b=bool(create.b),
+        y=bool(create.y)
     )
     session.add(level)
     session.commit()
