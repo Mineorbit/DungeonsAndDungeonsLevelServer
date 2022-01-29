@@ -51,6 +51,7 @@ def add_file_to_level(f_id: int, l_id: int, fileType: Utility = Utility.LEVELDAT
     session.add(levelFile)
     session.commit()
     _lf = levelFile.file_id
+    session.close()
 
 
 def remove_level(ulid: int):
@@ -62,6 +63,7 @@ def remove_level(ulid: int):
     session.query(LevelFile).filter(LevelFile.level_id == ulid).delete()
     session.query(Level).filter(Level.ulid == ulid).delete()
     session.commit()
+    session.close()
 
 
 def add_user_to_level(u_id: int, l_id: int):
@@ -73,17 +75,20 @@ def add_user_to_level(u_id: int, l_id: int):
     session.add(userLevel)
     session.commit()
     _lu = userLevel.user_id
+    session.close()
 
 
 def get_level(ulid: int):
     session = SessionMaker()
     level = session.query(Level).filter(Level.ulid == ulid).first()
+    session.close()
     return level
 
 
 def get_levels():
     session = SessionMaker()
     levels = session.query(Level).all()
+    session.close()
     return levels
 
 
@@ -92,12 +97,14 @@ def increment(ulid: int):
     level_download: LevelDownload = session.query(LevelDownload).filter(LevelDownload.level_id == ulid).first()
     level_download.downloads = level_download.downloads + 1
     session.commit()
+    session.close()
 
 
 def get_files_of_level(ulid: int, types=[Utility.LEVELDATA]):
     session = SessionMaker()
     files = session.query(LevelFile, File).filter(LevelFile.file_id == File.id).filter(LevelFile.level_id == ulid).\
         filter(LevelFile.type.in_(types)).with_entities(File).all()
+    session.close()
     return files
 
 

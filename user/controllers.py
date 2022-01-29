@@ -20,6 +20,7 @@ def create_user(create: UserCreate):
     session.add(user)
     session.commit()
     _id = user.id
+    session.close()
     return user
 
 
@@ -45,12 +46,14 @@ async def get_current_active_user(current_user: User = Depends(get_current_user)
 def get_user(username: str):
     session = SessionMaker()
     user = session.query(User).filter(User.name == username).first()
+    session.close()
     return user
 
 
 def get_users():
     session = SessionMaker()
     users = session.query(User).all()
+    session.close()
     return users
 
 

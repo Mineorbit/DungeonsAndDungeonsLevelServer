@@ -29,6 +29,8 @@ async def upload_file(in_file: fastapi.UploadFile):
     async with aiofiles.open(file_location, 'wb') as out_file:
         content = await in_file.read()  # async read
         await out_file.write(content)
+
+    session.close()
     return file
 
 
@@ -40,10 +42,12 @@ def remove_file(file_id: int):
     session = SessionMaker()
     session.query(File).filter(File.id == file_id).delete()
     session.commit()
+    session.close()
 
 
 async def download_file(file_id: int):
     session = SessionMaker()
     f: File = session.query(File).filter(File.id == file_id).first()
+    session.close()
     return FileResponse(config.PERMANENT_DATA + "/" + str(f.id), media_type=f.type, filename=f.name)
 
