@@ -9,7 +9,7 @@ from file.routes import router as fileRouter
 from level.routes import router as levelRouter
 from util import engine, Base
 
-app = FastAPI()
+app = FastAPI(openapi_url="/api/openapi.json",docs_url="/api/docs")
 
 origins = [
     "*"
@@ -35,33 +35,33 @@ except Exception as e:
 
 app.include_router(
     baseRouter,
-    prefix='',
+    prefix='/api',
     tags=['base']
 )
 
 app.include_router(
     userRouter,
-    prefix='/user',
+    prefix='/api/user',
     tags=['user']
 )
 
 
 app.include_router(
     authRouter,
-    prefix='/auth',
+    prefix='/api/auth',
     tags=['auth']
 )
 
 
 app.include_router(
     fileRouter,
-    prefix='/file',
+    prefix='/api/file',
     tags=['file']
 )
 
 
 app.include_router(
     levelRouter,
-    prefix='/level',
+    prefix='/api/level',
     tags=['level']
 )

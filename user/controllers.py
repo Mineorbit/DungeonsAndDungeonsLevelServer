@@ -35,7 +35,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         raise HTTPException()
     user = get_user(username=token_data.username)
     if user is None:
-        raise HTTPException()
+        raise HTTPException(status_code=404, detail="User not found")
     return user
 
 
