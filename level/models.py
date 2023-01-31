@@ -17,7 +17,7 @@ class Utility(enum.Enum):
 class Level(Base):
     __tablename__ = "level"
     ulid = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String(40))
     upload_date = Column(DateTime)
     description = Column(Text)
     availBlue = Column(Boolean)
