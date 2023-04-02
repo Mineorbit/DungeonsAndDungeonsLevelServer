@@ -67,6 +67,10 @@ async def get_level_meta_data(ulid: int):
 @proto_resp
 async def download_level(ulid: int):
     level_controller.increment(ulid)
+    
+    metaData = level_controller.get_level(ulid)
+    if metaData is None:
+        raise HTTPException(status_code=404, detail="Level not found")
     file: File = level_controller.get_files_of_level(ulid)[0]
     f = await file_controller.download_file(file.id)
     return f
