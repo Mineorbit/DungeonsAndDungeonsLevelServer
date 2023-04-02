@@ -58,6 +58,7 @@ async def remove_level(ulid: int,_UserOut = Depends(get_current_active_user)):
 @proto_resp
 async def get_level_meta_data(ulid: int):
     metaData = level_controller.get_level(ulid)
+    print(metaData)
     return LevelMetaDataOut.from_orm(metaData)
 
 
