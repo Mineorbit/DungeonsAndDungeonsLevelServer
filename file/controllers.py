@@ -49,5 +49,7 @@ async def download_file(file_id: int):
     session = SessionMaker()
     f: File = session.query(File).filter(File.id == file_id).first()
     session.close()
+    if f is None:
+        raise HTTPException(status_code=404, detail="File not found") 
     return FileResponse(config.PERMANENT_DATA + "/" + str(f.id), media_type=f.type, filename=f.name)
 
